@@ -1,0 +1,39 @@
+{
+  "name": "courselibrary",
+  "version": "1.0.0",
+  "description": "Application with authors and courses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ralukpopescu/CourseLibrary.git"
+  },
+  "author": "Raluca Popescu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ralukpopescu/CourseLibrary/issues"
+  },
+  "homepage": "https://github.com/ralukpopescu/CourseLibrary#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "scripts": "^0.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
