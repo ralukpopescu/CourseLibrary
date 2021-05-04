@@ -1,0 +1,18 @@
+.card-github-profile {
+    background-color: #fcfcfc;
+    margin: 20px;
+    min-height: 300px;
+    
+    align-items: left;
+    justify-content: center;
+    font-size: calc(8px + 2vmin);
+    color: rgb(12, 12, 12);
+    text-align: center;
+  }
+  .info{
+    margin-left:10px;
+    display: inline-block;
+  }
+  .name{
+    font-size: 125%;
+  }
