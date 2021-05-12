@@ -1,8 +1,9 @@
 import './App.css';
 import React, { Component } from 'react';
-import Header from './components/header/header.js';
-import Footer from './components/footer/footer.js';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
 import Content from './components/content/content';
+import AddCard from './components/addCard/addCard';
 
 const data = [
 {
@@ -40,16 +41,31 @@ const data = [
 class App extends Component
 {
   constructor(props){
-    super(props);
+    super(props);//to honor the link between the App class and the class that it extends from React.Component
+    //here we have access to the special state object that React manages for each class component
+    this.state = {
+      cardList: data,
+    };
+    //state is an object on the instance and "cardList" is a property of the state object
   }
     
+  addNewCard = (cardData) =>{
+    console.log('App:', cardData);
+    this.setState(prevState =>(
+      {
+        cardList: [...prevState.cardList, cardData] //concatenation
+      }
+    ));
+  }
+
   //both the props and the state are managed on an instance of the class
   render()
   {
     return (
       <div className="App">
           <Header/>
-          <Content cardList={data}/>
+          <AddCard onSubmit={this.addNewCard}/>
+          <Content cardList={this.state.cardList}/>
           <Footer/>
       </div>
     );
