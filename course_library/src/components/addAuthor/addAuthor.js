@@ -17,17 +17,22 @@ class AddAuthor extends Component {
     }
 
     handleChange=(event)=>{
-        const authorConst={...this.state.author, firstName: event.target.value}
+        const authorConst={...this.state.author, [event.target.id]: event.target.value}
         this.setState({author:authorConst});
-        console.log("HandleChange "+ event.target.value);
+        console.log("HandleChange id="+ event.target.id +" value=" +event.target.value);
     }
 
     handleSubmit=(event)=>{
+        debugger;
         event.preventDefault();
-        //debugger;
-        console.log("HandleSubmit save author: "+ this.state.author.firstName);
+        console.log("HandleSubmit save author: "+ this.state.author);
         //this.props.dispatch(authorActions.createAuthor(this.state.author));
-        this.props.actions.createAuthor(this.state.author);
+        this.props.actions.saveAuthor(this.state.author);
+        this.props.history.push('/');
+    }
+
+    handleCancel=()=>{
+        this.props.history.push('/');
     }
 
     render() {
@@ -42,24 +47,25 @@ class AddAuthor extends Component {
                         <tr>
                             <td>
                                 <span>First name:</span>
-                                <input type="text" className="inputText" onChange={this.handleChange} value={this.state.firstName.value}/>
+                                <input id="firstName" type="text" className="inputText" onChange={this.handleChange} value={this.state.firstName.value}/>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <span>Last name:</span>
-                                <input type="text" className="inputText" onChange={this.handleChange} value={this.state.lastName.value}/>
+                                <input id="lastName" type="text" className="inputText" onChange={this.handleChange} value={this.state.lastName.value}/>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <span>Category:</span>
-                                <input type="text" className="inputText" onChange={this.handleChange} value={this.state.category.value}/>
+                                <input id="category" type="text" className="inputText" onChange={this.handleChange} value={this.state.category.value}/>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button type="submit" className="btn">Save</button> 
+                                <button className="btn" onClick = {this.handleSubmit}>Save</button> 
+                                <button className="btn" onClick = {this.handleCancel}>Cancel</button> 
                             </td>
                         </tr>
                     </tbody>
@@ -77,7 +83,6 @@ AddAuthor.propTypes ={
 function mapStateToProps(state, ownProps)
 {
     console.log("Map state to props" + state.authors);
-    //debugger;
     return {
         authors:state.authors
     }
@@ -85,7 +90,6 @@ function mapStateToProps(state, ownProps)
 
 function mapDispatchToProps(dispatch)
 {
-    //debugger;
     return{
         //createAuthor: author => dispatch(authorActions.createAuthor(author))
         //using bindActionCreators is more simpler

@@ -5,14 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configureStore from './redux/configureStore';
 import {Provider as ReduxProvider} from 'react-redux';
+import { BrowserRouter as Router , Route} from 'react-router-dom';
 
 const store=configureStore();//we can pass the initial state if we are server rendering or initializing the store with data from localStorage
 
 ReactDOM.render(
   <ReduxProvider store = {store}>
-    <React.StrictMode>
+    <Router>
+      <Route path="/" component={App}/>
+    </Router>
+    {/* <React.StrictMode>
       <App />
-    </React.StrictMode>
+    </React.StrictMode> */}
   </ReduxProvider>,
   document.getElementById('root')
 );

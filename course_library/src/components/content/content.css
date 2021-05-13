@@ -1,7 +1,14 @@
 .content {
     display: auto;
-    margin: auto;
+    margin-top: 50px;
     background-color:ivory;
-  }
+}
+.btn {
+  background-color:lightsteelblue;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 2px;
+  width: auto;
+}
 
   
