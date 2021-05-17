@@ -12,7 +12,6 @@ import * as courseActions from '../../redux/actions/courseActions';
 class Content extends Component {
 
     seeCourses = (authorId) =>{
-        debugger;
         console.log("Loading courses for authorId="+ authorId);
         this.props.actions.getCoursesForAuthor(authorId).catch(error=>{
             alert("Loaded authors failed"+ error);
@@ -20,9 +19,15 @@ class Content extends Component {
         //this.props.history.push("/course-list/"+ authorId);
     }
 
-    addAuthor=()=>{
+    addAuthor = ()=>{
         console.log("Add author clicked");
         this.props.history.push("/add-author");
+    }
+
+    deleteAuthor = (authorId) =>{
+        console.log("Delete author with id="+ authorId)
+        alert("Author deleted successfully");
+        this.props.actions.deleteAuthor(authorId);
     }
 
     componentDidMount()
@@ -46,7 +51,8 @@ class Content extends Component {
                         {this.props.authors.map(function(item){
                         return <Author key={item.id} {...item} 
                                     editAuthor={this.editAuthor} 
-                                    seeCourses={this.seeCourses}/>
+                                    seeCourses={this.seeCourses}
+                                    deleteAuthor={this.deleteAuthor}/>
                     }, this)}
                 </table>
            </div>
@@ -71,7 +77,8 @@ function mapDispatchToProps(dispatch)
         //using bindActionCreators is more simpler
         actions: {
             getAuthors: bindActionCreators(authorActions.getAuthors, dispatch),
-            getCoursesForAuthor: bindActionCreators(courseActions.getCoursesForAuthor, dispatch)
+            getCoursesForAuthor: bindActionCreators(courseActions.getCoursesForAuthor, dispatch),
+            deleteAuthor: bindActionCreators(authorActions.deleteAuthor, dispatch)
         }
     };
 }
